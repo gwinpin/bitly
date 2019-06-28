@@ -1,0 +1,13 @@
+    AddDefaultCharset utf-8
+
+   <IfModule mod_rewrite.c>
+       RewriteEngine On
+       RewriteBase /
+#       RewriteCond %{REQUEST_FILENAME} !-f
+#       RewriteCond %{REQUEST_FILENAME} !-d
+#       RewriteRule . /index.php [L]
+        RewriteCond %{THE_REQUEST} /pub/([^\s?]*) [NC]
+        RewriteRule ^ %1 [L,NE,R=302]
+        RewriteRule ^((?!pub/).*)$ pub/index.php [L,NC]
+
+   </IfModule>
